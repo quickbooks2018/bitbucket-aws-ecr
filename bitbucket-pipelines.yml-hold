@@ -1,0 +1,16 @@
+image: python:3.7.4-alpine3.10
+
+pipelines:
+  tags:
+    ecr-release-*:
+      - step:
+          services:
+            - docker
+          script:
+            - IMAGE_NAME="test"
+            - TAG=${BITBUCKET_BRANCH:-$BITBUCKET_TAG}
+            - docker build -t $IMAGE_NAME:$TAG .
+            - pipe: atlassian/aws-ecr-push-image:1.2.0
+              variables:
+                IMAGE_NAME: $IMAGE_NAME:$TAG
+                TAGS: $TAG
