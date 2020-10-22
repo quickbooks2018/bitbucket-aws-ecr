@@ -1,0 +1,8 @@
+image: python:3.4.4
+
+pipelines:
+  default:
+    - step:
+        script: # This will deploy required version of app to ecs
+          - chmod +x api-gateway.sh
+          - ./api-gateway.sh

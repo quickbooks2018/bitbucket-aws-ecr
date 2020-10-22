@@ -1,0 +1,6 @@
+[
+  {
+    "name": "api-gateway",
+    "imageUri": "YOUR-API-GATEWAY-IN-ECR"
+  }
+]
