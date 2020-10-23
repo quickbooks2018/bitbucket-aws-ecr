@@ -1,0 +1,11 @@
+image: atlassian/default-image:2
+
+pipelines:
+  default:
+    - step:
+        script: # This will deploy required version of app to ecs
+          - sleep 10
+          - echo '[{"name":"api-gateway","imageUri":"PUT-IMAGE-URI-FROM-ECR"}]' > api-gateway.json
+          - zip api-gateway.zip api-gateway.json
+          - apt-get update && apt-get install -y awscli
+          - aws s3 cp api-gateway.zip s3://your-qa-pipeline/api-gateway/api-gateway.zip
