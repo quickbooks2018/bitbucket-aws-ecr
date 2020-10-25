@@ -1,0 +1,8 @@
+  
+image: atlassian/default-image:2
+
+pipelines:
+  default:
+    - step:
+        script: # This will deploy required version of app to ec2 with codedeploy
+          - aws s3 cp api-gateway.zip s3://YOUR-S3-BUCKET/api-gateway/api-gateway.zip
